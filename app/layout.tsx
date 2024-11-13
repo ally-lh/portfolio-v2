@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
+import BackToTop from "./_components/BackToTop";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="black" className="overflow-x-hidden">
+    <html
+      lang="en"
+      data-theme="black"
+      className="overflow-x-hidden scroll-smooth"
+      style={{ scrollBehavior: "smooth" }}
+    >
       <body className="">
         <Navbar />
         {children}
+        <BackToTop />
+        <Footer />
       </body>
     </html>
   );

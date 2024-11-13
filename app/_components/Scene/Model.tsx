@@ -18,9 +18,11 @@ export default function Model() {
   const [dragging, setDragging] = useState(false);
   const [isAutoRotating, setIsAutoRotating] = useState(true);
 
-  useLayoutEffect(() => {
-    console.log("Loaded Nodes rweal:", nodes);
-  }, [nodes]);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    document.body.style.cursor = hovered ? "pointer" : "auto";
+  }, [hovered]);
 
   // Dragging logic to update the rotation speed
   const bindDrag = useDrag(
@@ -91,6 +93,8 @@ export default function Model() {
         geometry={(nodes.Torus002 as THREE.Mesh).geometry}
         material={(nodes.Torus002 as THREE.Mesh).material}
         {...bindDrag()}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
       >
         <MeshTransmissionMaterial {...materialProps} />
       </mesh>

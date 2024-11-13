@@ -18,9 +18,11 @@ export default {
         "13xl": "13rem",
       },
       colors: {
+     
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "var(--primary)",
+   
       },
       animation: {
         "horizontal-scroll": "horizontal-scroll linear 16s infinite ",
