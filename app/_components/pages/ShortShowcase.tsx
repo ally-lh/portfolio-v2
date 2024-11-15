@@ -60,12 +60,10 @@ export default function ShortShowcase() {
               <div
                 className={`option ${activeIndex === index ? "active" : ""}`} // Add active class conditionally
                 onClick={() => handleOptionClick(index)}
+                key={index}
               >
                 <div className="shadow"></div>
                 <div className="label">
-                  {/* <div className="icon">
-              <i className="fas fa-walking"></i>
-            </div> */}
                   <div className="info">
                     <div className="main">{content.title}</div>
                   </div>

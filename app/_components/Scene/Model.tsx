@@ -92,7 +92,7 @@ export default function Model() {
         position={[0, 0, 0]}
         geometry={(nodes.Torus002 as THREE.Mesh).geometry}
         material={(nodes.Torus002 as THREE.Mesh).material}
-        {...bindDrag()}
+        {...(bindDrag() as any)}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
       >
