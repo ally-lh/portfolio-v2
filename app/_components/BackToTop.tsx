@@ -10,7 +10,7 @@ export default function BackToTop() {
     });
   };
   return (
-    <div className=" fixed bottom-24 right-12">
+    <div className=" fixed bottom-24 z-50 right-12">
       <div className="tooltip" data-tip="Back to top">
         <button
           className="btn btn-outline btn-lg rounded-full aspect-square p-0 shadow-lg"

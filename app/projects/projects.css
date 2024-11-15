@@ -46,3 +46,60 @@
   transition: transform 230ms ease-in-out;
   transform: rotate(10deg) scale(1.3);
 }
+
+/* figure {
+  margin: 0;
+
+  position: relative;
+  overflow: hidden;
+}
+
+figure::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(0, 0, 0, 0.5);
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(2);
+  transition: opacity 300ms;
+}
+
+figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  font-size: 1.2rem;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 600ms, transform 600ms;
+}
+
+.project:is(:hover, :focus) figure::after {
+  opacity: 1;
+}
+
+.project:is(:hover, :focus) figcaption {
+  opacity: 1;
+  transition: opacity 600ms;
+} */
+
+.allCard:hover img {
+  transform: scale(1.1); /* Smooth scaling */
+  transition: transform 0.3s ease-in-out; /* Adjust duration and easing */
+}
+
+.allCard img {
+  transition: transform 0.3s ease-in-out; /* Ensures the initial state is smooth */
+}

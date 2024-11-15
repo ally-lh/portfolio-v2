@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="navbar w-screen flex justify-between px-10 py-6">
+    <nav className="navbar w-screen flex justify-between px-10 py-6 relative z-50">
       <div className="navbar-brand">
         <Link href="/">Allison</Link>
       </div>

@@ -13,12 +13,12 @@ import {
   SoftShadows,
 } from "@react-three/drei";
 
-import { useFrame, useThree, extend } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
-import { useDrag } from "@use-gesture/react";
+
 import * as THREE from "three";
 
-function Robot() {
+const Robot = React.forwardRef<THREE.Group, any>((props, ref) => {
   // Load GLTF model and animations
   const { nodes, scene, animations } = useGLTF("medias/flyingRobot.glb");
 
@@ -69,12 +69,14 @@ function Robot() {
     }
   }, []);
 
-  return <primitive object={scene} ref={robotRef} receiveShadow />;
-}
+  return <primitive object={scene} ref={robotRef} {...props} receiveShadow />;
+});
 
 export default function Index() {
   const [aspectRatio, setAspectRatio] = useState(1);
-  const robotRef = useRef();
+  const robotRef = useRef<THREE.Group | null>(null);
+
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     // Update aspect ratio once window is available
@@ -86,8 +88,28 @@ export default function Index() {
     };
 
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const handleScroll = () => {
+      // Calculate the scroll progress (you can adjust the scaling based on page length)
+      const progress =
+        window.scrollY /
+        (document.documentElement.scrollHeight - window.innerHeight);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+  useEffect(() => {
+    if (robotRef.current) {
+      const xPosition = 2 - scrollProgress * 4; // Adjust the x position based on scroll
+      robotRef.current.position.x = xPosition;
+    }
+    console.log("???");
+  }, [scrollProgress]);
 
   const perspectiveConfig = {
     fov: 10,
@@ -112,7 +134,7 @@ export default function Index() {
         position: "fixed",
         top: 0,
         left: 0,
-        zIndex: 10,
+        zIndex: 1,
       }}
       shadows
     >
@@ -136,7 +158,7 @@ export default function Index() {
       {/* Optional: Add AxesHelper to understand scene orientation */}
       <axesHelper args={[5]} />
 
-      <Robot />
+      <Robot ref={robotRef} />
     </Canvas>
   );
 }
